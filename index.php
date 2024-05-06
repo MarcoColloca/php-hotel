@@ -237,11 +237,18 @@
 
     .active-filters{
         display: flex;
+        flex-direction: column;
         gap: 10px;
         width: 100%;
         align-items: center;
         justify-content: center;
         background-color: rgb(211, 211, 211);
+        padding: 30px 0;
+    }
+
+    .active-filters h3{
+        margin-left: -250px;
+        font-weight: bold;
     }
 
     .active-filters span{
