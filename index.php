@@ -38,7 +38,9 @@
             'distance_to_center' => 50
         ],
 
-    ];    
+    ];
+    
+    $hotel_count = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,12 +51,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+    <header> 
+        <div class="page-title">
+            <h1>Hotels</h1>
+        </div>
+    </header>
     <main>
         <div class="container">
             <div class="hotels">
                 <?php
                 foreach($hotels as $hotel){
-    
+                    
+                    $hotel_count++;
+
                     $hotel_name = $hotel['name'];
                     $hotel_description = $hotel['description'];
                     $hotel_has_parking = $hotel['parking'] ? 'Ha il parcheggio' : 'Non ha il parcheggio';
@@ -62,18 +71,38 @@
                     $holel_distance = $hotel['distance_to_center'];
                 
                     $hotel_text = 
-                    "               
-                        <h3> Nome: $hotel_name </h3>
-                        <P> Descrizione: $hotel_description</p>
-                        <p> $hotel_has_parking </p>
-                        <p> Hotel $hotel_vote stelle </p>
-                        <p> $holel_distance km dal centro</p>
-                    ";
+                    "
+                        <table class=\"table\">     
+                            <tbody>
+                                <tr>
+                                    <th scope=\"row\">Nome:</th>
+                                    <td>$hotel_name</td>                                    
+                                </tr>
+                                <tr>
+                                    <th scope=\"row\">Descrizione</th>
+                                    <td>$hotel_description</td>
+                                </tr>
+                                <tr>
+                                    <th scope=\"row\">Parcheggio</th>
+                                    <td colspan=\"2\">$hotel_has_parking</td>
+                                </tr>
+                                <tr>
+                                    <th scope=\"row\">Voto</th>
+                                    <td colspan=\"2\">$hotel_vote Stelle</td>
+                                </tr>
+                                <tr>
+                                    <th scope=\"row\">Distanza dal Centro</th>
+                                    <td colspan=\"2\">$holel_distance km </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    ";                    
                 ?>
-                    <div class="hotel">
+                    <div class="hotel-table">
+                        <h2>Hotel #<?php echo $hotel_count ?></h2>
                         <?php echo $hotel_text ?>
                     </div>
-                <?php        
+                <?php
                 };
                 ?>
             </div>
@@ -82,4 +111,22 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
+
+
+
+<style>
+    .page-title{
+        padding: 25px 0;
+        color: white;
+        background-color: coral;
+        text-align: center;
+        margin-bottom: 100px;
+    }
+
+
+    .hotel-table{
+        margin: 50px 0;
+    }
+</style>
 </html>
