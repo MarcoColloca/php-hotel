@@ -72,7 +72,7 @@
                 
                     $hotel_text = 
                     "
-                        <table class=\"table\">     
+                        <table class=\"table table-dark table-striped table-hover\">     
                             <tbody>
                                 <tr>
                                     <th scope=\"row\">Nome:</th>
