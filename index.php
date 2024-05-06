@@ -39,8 +39,9 @@
         ],
 
     ];
-    $hotel_filter_parking = $_GET['parking'];
-    $hotel_filter_vote = (int)$_GET['vote'];
+    $hotel_filter_parking = $_GET['parking'] ?? '';
+    //$hotel_filter_vote = (int)$_GET['vote'] ?? '';
+    $hotel_filter_vote = isset($_GET['vote']) ? (int)$_GET['vote'] : '';
     //var_dump($hotel_filter_vote);
     $hotel_count = 0;
 ?>
@@ -80,6 +81,13 @@
 
                 <button>Filtra</button>
             </form>
+
+
+        </div>
+        <div class="active-filters">
+            <h3>Filtri Attivi:</h3>
+            <span>Stars: <?php echo $hotel_filter_vote ?> </span> 
+            <span>Parking: <?php echo $hotel_filter_parking ?></span>
         </div>
 
         <div class="container">
@@ -143,7 +151,7 @@
                         </div>
                     <?php
                     }
-                }else{
+                }else if($hotel_filter_vote === 0){
                     if($hotel_filter_parking === 'yes' && $hotel_has_parking === 'Ha il parcheggio'){?> 
                         <div class="hotel-table">
                             <h2>Hotel #<?php echo $hotel_count ?></h2>
@@ -174,6 +182,28 @@
 </body>
 
 
+<!-- <?php foreach ($hotels as $hotel): ?>
+    <?php
+    // Recupero le variabili
+    $hotel_has_parking = $hotel['parking'] ? 'Ha il parcheggio' : 'Non ha il parcheggio';
+    ?>
+    <table>
+        <tbody>
+            <tr>
+                <th scope="row">Nome:</th>
+                <td><?= $hotel['name']; ?></td>
+            </tr>
+            <tr>
+                <th scope="row">Descrizione</th>
+                <td><?= $hotel['description']; ?></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><?= $hotel_has_parking ?></td>
+            </tr>
+        </tbody>
+    </table>
+<?php endforeach; ?> -->
 
 
 <style>
@@ -203,6 +233,19 @@
 
     .filter label{
         font-size: 24px;
+    }
+
+    .active-filters{
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(211, 211, 211);
+    }
+
+    .active-filters span{
+        font-weight: bold;
     }
 
     #vote{
