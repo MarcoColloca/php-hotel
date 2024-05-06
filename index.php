@@ -1,5 +1,5 @@
 <?php
-
+    var_dump($_GET);
     $hotels = [
 
         [
@@ -39,7 +39,8 @@
         ],
 
     ];
-    
+    $hotel_filter_parking = $_GET['parking'];
+    $hotel_filter_vote = $_GET['vote'];
     $hotel_count = 0;
 ?>
 <!DOCTYPE html>
@@ -86,7 +87,7 @@
                     $hotel_vote = $hotel['vote'];
                     $holel_distance = $hotel['distance_to_center'];
                 
-                    $hotel_text = 
+                    $hotel_table = 
                     "
                         <table class=\"table table-dark table-striped table-hover\">     
                             <tbody>
@@ -114,11 +115,25 @@
                         </table>
                     ";                    
                 ?>
+                <?php if($hotel_filter_parking === 'yes' && $hotel_has_parking === 'Ha il parcheggio'){?> 
                     <div class="hotel-table">
                         <h2>Hotel #<?php echo $hotel_count ?></h2>
-                        <?php echo $hotel_text ?>
+                        <?php echo $hotel_table ?>
                     </div>
                 <?php
+                }else if($hotel_filter_parking === 'no' && $hotel_has_parking === 'Non ha il parcheggio'){?>
+                    <div class="hotel-table">
+                        <h2>Hotel #<?php echo $hotel_count ?></h2>
+                        <?php echo $hotel_table ?>
+                    </div>
+                <?php
+                }else if ($hotel_filter_parking === ''){?>
+                    <div class="hotel-table">
+                        <h2>Hotel #<?php echo $hotel_count ?></h2>
+                        <?php echo $hotel_table ?>
+                    </div>
+                <?php
+                }
                 };
                 ?>
             </div>
