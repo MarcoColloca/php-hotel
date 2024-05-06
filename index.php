@@ -1,5 +1,5 @@
 <?php
-    var_dump($_GET);
+    //var_dump($_GET);
     $hotels = [
 
         [
@@ -40,7 +40,8 @@
 
     ];
     $hotel_filter_parking = $_GET['parking'];
-    $hotel_filter_vote = $_GET['vote'];
+    $hotel_filter_vote = (int)$_GET['vote'];
+    //var_dump($hotel_filter_vote);
     $hotel_count = 0;
 ?>
 <!DOCTYPE html>
@@ -61,7 +62,14 @@
         <div class="filter">
             <form action="" method="GET">
                 <label for="vote"> Filtra per Voto</label>
-                <input type="text" name="vote" id="vote">
+                <select name="vote" id="vote">
+                    <option value="">-</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
 
                 <label for="parking">Filtra per parcheggio</label>
                 <select name="parking" id="parking">
@@ -115,25 +123,47 @@
                         </table>
                     ";                    
                 ?>
-                <?php if($hotel_filter_parking === 'yes' && $hotel_has_parking === 'Ha il parcheggio'){?> 
-                    <div class="hotel-table">
-                        <h2>Hotel #<?php echo $hotel_count ?></h2>
-                        <?php echo $hotel_table ?>
-                    </div>
-                <?php
-                }else if($hotel_filter_parking === 'no' && $hotel_has_parking === 'Non ha il parcheggio'){?>
-                    <div class="hotel-table">
-                        <h2>Hotel #<?php echo $hotel_count ?></h2>
-                        <?php echo $hotel_table ?>
-                    </div>
-                <?php
-                }else if ($hotel_filter_parking === ''){?>
-                    <div class="hotel-table">
-                        <h2>Hotel #<?php echo $hotel_count ?></h2>
-                        <?php echo $hotel_table ?>
-                    </div>
-                <?php
-                }
+                <?php if($hotel_filter_vote !== 0 && $hotel_vote >= $hotel_filter_vote){
+                    if($hotel_filter_parking === 'yes' && $hotel_has_parking === 'Ha il parcheggio'){?> 
+                        <div class="hotel-table">
+                            <h2>Hotel #<?php echo $hotel_count ?></h2>
+                            <?php echo $hotel_table ?>
+                        </div>
+                    <?php
+                    }else if($hotel_filter_parking === 'no' && $hotel_has_parking === 'Non ha il parcheggio'){?>
+                        <div class="hotel-table">
+                            <h2>Hotel #<?php echo $hotel_count ?></h2>
+                            <?php echo $hotel_table ?>
+                        </div>
+                    <?php
+                    }else if ($hotel_filter_parking === ''){?>
+                        <div class="hotel-table">
+                            <h2>Hotel #<?php echo $hotel_count ?></h2>
+                            <?php echo $hotel_table ?>
+                        </div>
+                    <?php
+                    }
+                }else{
+                    if($hotel_filter_parking === 'yes' && $hotel_has_parking === 'Ha il parcheggio'){?> 
+                        <div class="hotel-table">
+                            <h2>Hotel #<?php echo $hotel_count ?></h2>
+                            <?php echo $hotel_table ?>
+                        </div>
+                    <?php
+                    }else if($hotel_filter_parking === 'no' && $hotel_has_parking === 'Non ha il parcheggio'){?>
+                        <div class="hotel-table">
+                            <h2>Hotel #<?php echo $hotel_count ?></h2>
+                            <?php echo $hotel_table ?>
+                        </div>
+                    <?php
+                    }else if ($hotel_filter_parking === ''){?>
+                        <div class="hotel-table">
+                            <h2>Hotel #<?php echo $hotel_count ?></h2>
+                            <?php echo $hotel_table ?>
+                        </div>
+                    <?php
+                    }
+                };
                 };
                 ?>
             </div>
