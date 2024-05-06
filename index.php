@@ -57,6 +57,22 @@
         </div>
     </header>
     <main>
+        <div class="filter">
+            <form action="" method="GET">
+                <label for="vote"> Filtra per Voto</label>
+                <input type="text" name="vote" id="vote">
+
+                <label for="parking">Filtra per parcheggio</label>
+                <select name="parking" id="parking">
+                    <option value="">-</option>
+                    <option value="yes">Sì</option>
+                    <option value="no">No</option>
+                </select>
+
+                <button>Filtra</button>
+            </form>
+        </div>
+
         <div class="container">
             <div class="hotels">
                 <?php
@@ -121,9 +137,32 @@
         color: white;
         background-color: coral;
         text-align: center;
-        margin-bottom: 100px;
     }
 
+    .filter{
+        height: 130px;
+        background-color: rgb(211, 211, 211);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .filter button{
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+        background-color: coral;
+        color: white;        
+    }
+
+
+    .filter label{
+        font-size: 24px;
+    }
+
+    #vote{
+        margin-right: 35px;
+    }
 
     .hotel-table{
         margin: 50px 0;
