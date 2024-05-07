@@ -75,8 +75,8 @@
                 <label for="parking">Filtra per parcheggio</label>
                 <select name="parking" id="parking">
                     <option value="">-</option>
-                    <option value="yes">Sì</option>
-                    <option value="no">No</option>
+                    <option <?= $hotel_filter_parking === 'yes' ? 'selected' : '' ?> value="yes">Sì</option>
+                    <option <?= $hotel_filter_parking === 'no' ? 'selected' : '' ?> value="no">No</option>
                 </select>
 
                 <button>Filtra</button>
